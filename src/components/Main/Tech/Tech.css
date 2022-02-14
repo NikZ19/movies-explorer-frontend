@@ -1,0 +1,130 @@
+.tech {
+  padding: 100px 0;
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 768px) {
+  .tech {
+    padding: 90px 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .tech {
+    padding: 70px 0;
+    background-color: #fff;
+  }
+}
+
+.tech__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1140px;
+  width: calc(100% - 140px);
+}
+
+@media screen and (max-width: 1024px) {
+  .tech__container {
+    width: calc(100% - 120px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tech__container {
+    width: calc(100% - 100px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .tech__container {
+    width: calc(100% - 36px);
+  }
+}
+
+.tech__text-container {
+  padding: 90px 0 100px;
+  align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+  .tech__text-container {
+    padding: 80px 0 83px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .tech__text-container {
+    padding: 60px 0 50px;
+  }
+}
+
+.tech__title {
+  margin: 0 0 25px;
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .tech__title {
+    margin-bottom: 22px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .tech__title {
+    margin-bottom: 24px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.tech__info {
+  margin: 0;
+  max-width: 460px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .tech__info {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .tech__info {
+    max-width: 290px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.tech__skills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 90px);
+  justify-content: center;
+  grid-gap: 10px 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .tech__skills {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .tech__skills {
+    align-self: center;
+    max-width: 178px;
+  }
+}
