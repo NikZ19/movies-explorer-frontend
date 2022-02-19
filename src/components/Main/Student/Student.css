@@ -1,0 +1,166 @@
+.student {
+  padding: 111px 0 115px;
+  max-width: 1140px;
+  width: calc(100% - 140px);
+}
+
+@media screen and (max-width: 1024px) {
+  .student {
+    padding: 101px 0 90px;
+    width: calc(100% - 120px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .student {
+    padding: 91px 0 80px;
+    width: calc(100% - 100px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student {
+    padding: 71px 0 60px;
+    width: calc(100% - 36px);
+  }
+}
+
+.student__biography-container {
+  padding: 66px 0 101px;
+  gap: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .student__biography-container {
+    padding-bottom: 91px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__biography-container {
+    gap: 0;
+    padding: 60px 0 69px;
+    flex-direction: column;
+  }
+}
+
+.student__biography-container-inner {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .student__biography {
+    margin: 40px 0;
+  }
+}
+
+.student__name {
+  margin: 0;
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .student__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student__name {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.student__about {
+  margin: 19px 0 25px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .student__about {
+    margin: 15px 0 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student__about {
+    margin: 20px 0 20px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+
+.student__description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 768px) {
+  .student__description {
+    max-width: 364px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student__description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.student__social-link {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+
+.student__social-link:hover {
+  opacity: 0.6;
+}
+
+.student__social-link:not(:last-child) {
+  margin-right: 20px;
+}
+
+.student__photo {
+  border-radius: 10px;
+  width: 270px;
+  height: 327px;
+}
+
+@media screen and (max-width: 768px) {
+  .student__photo {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__photo {
+    align-self: center;
+    order: -1;
+    width: 284px;
+    height: 352px;
+  }
+}

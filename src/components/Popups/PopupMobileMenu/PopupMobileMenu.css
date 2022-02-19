@@ -1,0 +1,29 @@
+.popup-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-mobile-menu__close {
+  z-index: 2;
+  background-image: url(../../../images/cross_icon.svg);
+  width: 22px;
+  height: 22px;
+  border: none;
+  padding: 0;
+  margin: 23px 23px 0 0;
+  background-color: transparent;
+  background-position: center;
+}
+
+@media screen and (max-width: 425px) {
+  .popup-mobile-menu__close {
+    margin: 12px 12px 0 0;
+  }
+}

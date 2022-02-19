@@ -1,0 +1,110 @@
+.profile {
+  max-width: 410px;
+}
+
+.profile__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding-top: 75px; */
+}
+
+.profile__greeting {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  padding: 55px 0 123px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__greeting {
+    padding: 216px 0 96px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__greeting {
+    padding: 50px 0 80px;
+  }
+}
+
+.profile__form {
+  padding: 0 0 220px 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__form{
+    padding-bottom: 210px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__form{
+    max-width: 260px;
+    padding-bottom: 379px;
+  }
+}
+
+.profile__label {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__label:not(:last-of-type) {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 15px;
+}
+
+.profile__label:not(:first-of-type) {
+  padding-top: 17px;
+}
+
+.profile__input {
+  font-size: 11px;
+  line-height: 13px;
+  border: none;
+  text-align: right;
+}
+
+.profile__buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__button {
+  font-size: 13px;
+  line-height: 16px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.profile__button:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+.profile__button:hover {
+  opacity: 0.6;
+}
+
+.profile__button:active {
+  transform: scale(95%);
+}
+
+.profile__button_type_submit {}
+
+.profile__button_type_logout {
+  font-weight: 500;
+  color: #FF4062;
+}
