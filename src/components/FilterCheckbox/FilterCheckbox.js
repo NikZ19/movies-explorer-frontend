@@ -1,9 +1,9 @@
 import './FilterCheckbox.css';
 
-function FilterCheckbox({ onChange, label, defaultChecked }) {
+function FilterCheckbox({ switchShortMovie, label }) {
   return (
     <label className='filter-checkbox'>
-      <input className='filter-checkbox__input' type='checkbox' onChange={onChange} defaultChecked={defaultChecked} />
+      <input className='filter-checkbox__input' type='checkbox' onClick={switchShortMovie} />
       <span className='filter-checkbox__switch' />
       <p className='filter-checkbox__label'>{label}</p>
     </label>

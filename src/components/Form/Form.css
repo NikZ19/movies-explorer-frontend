@@ -102,6 +102,10 @@
   }
 }
 
+.register__submit:disabled {
+  opacity: 0.3;
+}
+
 .register__caption {
   font-size: 14px;
   line-height: 17px;

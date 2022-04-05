@@ -144,3 +144,8 @@
 .search-form__submit:active {
   transform: scale(95%);
 }
+
+.search-form__submit:disabled {
+  cursor: default;
+  opacity: 0.3;
+}

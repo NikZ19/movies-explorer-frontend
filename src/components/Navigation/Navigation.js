@@ -7,13 +7,32 @@ function Navigation({ type }) {
 
   return (
     <nav className={`navigation-${type}`}>
-      {type === 'header' ?
-        <ul className='navigation-header__list'>
+      <ul className={`navigation-${type}__list`}>
+        {type === 'menu' && (
+          <li className={`navigation-${type}__list-item`}>
+            <NavLink className={setActiveMenuLink} to='/'>Главная</NavLink>
+          </li>
+        )}
+        <li className={`navigation-${type}__list-item`}>
+          <NavLink className={setActiveMenuLink} to='/movies'>Фильмы</NavLink>
+        </li>
+        <li className={`navigation-${type}__list-item`}>
+          <NavLink className={setActiveMenuLink} to='/saved-movies' >Сохранённые фильмы</NavLink>
+        </li>
+        <li className={`navigation-${type}__list-item`}>
+          <Link className={`navigation-${type}__profile-btn`} to='/profile'>
+            <img className='navigation__profile-icon' src={icon} alt='#' />
+            <p className='navigation__profile-text'>Аккаунт</p>
+          </Link>
+        </li>
+      </ul>
+      {/* {type === 'header' ? */}
+      {/* <ul className='navigation-header__list'>
           <li className='navigation-header__list-item'>
-            <Link className='navigation-header__link' to='/movies'>Фильмы</Link>
+            <NavLink className={setActiveMenuLink} to='/movies'>Фильмы</NavLink>
           </li>
           <li className='navigation-header__list-item'>
-            <Link className='navigation-header__link' to='/saved-movies'>Сохранённые фильмы</Link>
+            <NavLink className={setActiveMenuLink} to='/saved-movies' >Сохранённые фильмы</NavLink>
           </li>
           <li className='navigation-header__list-item navigation-header__list-item_with-btn'>
             <Link className='navigation-header__profile-btn' to='/profile'>
@@ -39,8 +58,8 @@ function Navigation({ type }) {
               <p className='navigation__profile-text'>Аккаунт</p>
             </Link>
           </li>
-        </ul>
-      }
+        </ul> */}
+
     </nav>
   );
 }

@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 
 function Register(props) {
   return (
-    <Form />
+    <Form props={props} />
   );
 }
 
