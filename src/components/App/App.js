@@ -6,10 +6,10 @@ import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
@@ -173,6 +173,8 @@ function App() {
     mainApi.signout()
       .then(() => {
         localStorage.removeItem('movies');
+        localStorage.removeItem('reqData');
+        localStorage.removeItem('toggleState');
         setLoggedIn(false);
         navigate('/');
       })
@@ -218,17 +220,19 @@ function App() {
             } />
             <Route path='/signin' element={
               <Login
-                handleClickButton={handleClickSignInButton}
+                isLoggin={loggedIn}
+                handleSubmit={handleClickSignInButton}
                 resetServerError={resetServerError}
-                isLoading={isLoading}
                 serverError={serverError.login}
+                isLoading={isLoading}
               />
             } />
             <Route path='/signup' element={
               <Register
+                isLoggin={loggedIn}
+                handleSubmit={handleClickSignUpButton}
                 resetServerError={resetServerError}
                 serverError={serverError.signUp}
-                handleClickButton={handleClickSignUpButton}
                 isLoading={isLoading}
               />
             } />

@@ -1,13 +1,12 @@
 import { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import { SavedMoviesContext } from '../../../context/SavedMoviesContext';
-
+import { calcDuration } from '../../../utils/calcDuration';
 import './MoviesCard.css';
-const isTouchDevice = 'ontouchstart' in window;
-
 
 function MoviesCard({ movieData, handleLikeClick, handleRemoveButton }) {
+
+  const isTouchDevice = 'ontouchstart' in window;
 
   const savedMovies = useContext(SavedMoviesContext);
   const isLiked = savedMovies.find(i => +i.movieId === movieData.id)
@@ -15,12 +14,6 @@ function MoviesCard({ movieData, handleLikeClick, handleRemoveButton }) {
   const location = useLocation().pathname;
 
   const [imageHovered, setImageHovered] = useState(false);
-
-  const calcDuration = (min) => {
-    const hour = Math.floor(min / 60);
-    const minute = Math.floor(min % 60);
-    return `${hour === 0 ? "" : `${hour}ч`} ${minute}м`;
-  }
 
   const handleMouseEnter = () => setImageHovered(true);
   const handleMouseLeave = () => setImageHovered(false);

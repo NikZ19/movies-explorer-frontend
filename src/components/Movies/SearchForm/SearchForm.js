@@ -1,7 +1,7 @@
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ handleSearchButton, handleSearchQuery, searchQuery, isLoading, switchShortMovie }) {
+function SearchForm({ handleSearchButton, handleSearchQuery, searchQuery, isLoading, switchShortMovie, isActiveCheckbox }) {
 
   return (
     <div className='search-form root__container' >
@@ -12,7 +12,7 @@ function SearchForm({ handleSearchButton, handleSearchQuery, searchQuery, isLoad
           <button className='search-form__submit' disabled={isLoading || !searchQuery}>Найти</button>
         </form>
         <div className='search-form__checkbox'>
-          <FilterCheckbox switchShortMovie={switchShortMovie} label='Короткометражки' />
+          <FilterCheckbox switchShortMovie={switchShortMovie} label='Короткометражки' isActive={isActiveCheckbox}/>
         </div>
       </div>
     </div>

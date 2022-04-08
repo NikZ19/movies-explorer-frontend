@@ -5,7 +5,17 @@ import ButtonAddMoreMovies from './ButtonAddMoreMovies/ButtonAddMoreMovies.js'
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import SearchForm from './SearchForm/SearchForm';
 import { filterMovies, filterShortMovies } from '../../utils/searchFilter';
-import useWindowWidth from '../../utils/useWindowWidth';
+import useWindowWidth from '../../hooks/useWindowWidth';
+import {
+  MOBILE_WIDTH,
+  TABLET_WIDTH,
+  DESKTOP_WIDTH,
+  NUMBER_OF_CARDS_FOR_MOBILE,
+  NUMBER_OF_CARDS_FOR_TABLET,
+  NUMBER_OF_CARDS_FOR_DESKTOP,
+  NUMBER_OF_CARDS_TO_BE_ADDED_ON_MOBILE,
+  NUMBER_OF_CARDS_TO_BE_ADDED_ON_DESKTOP
+} from '../../utils/const';
 
 function Movies({ handleLikeClick }) {
   const windowWidth = useWindowWidth();
@@ -14,7 +24,7 @@ function Movies({ handleLikeClick }) {
   const [responseText, setResponseText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isEnableShortMovies, setIsEnableShortMovies] = useState(false);
+  const [isEnableShortMovies, setIsEnableShortMovies] = useState(JSON.parse(localStorage.getItem('toggleState')) || false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const switchShortMovie = () => {
@@ -24,58 +34,84 @@ function Movies({ handleLikeClick }) {
     }
 
     if (isEnableShortMovies && movies) {
-      const data = JSON.parse(localStorage.getItem('movies'));
-      setMovies(data || []);
+      try {
+        const { movies } = JSON.parse(localStorage.reqData);
+        setMovies(movies);
+      } catch {
+        setMovies([]);
+      }
     }
     setIsEnableShortMovies((prevState) => !prevState);
   };
 
   const handleClickButtonAddMore = () => {
-    windowWidth >= 1280
-      && setCardCount(cardCount + 3);
+    windowWidth >= DESKTOP_WIDTH
+      && setCardCount(cardCount + NUMBER_OF_CARDS_TO_BE_ADDED_ON_DESKTOP);
 
-    windowWidth >= 320
-      && windowWidth < 1280 && setCardCount(cardCount + 2);
+    windowWidth >= MOBILE_WIDTH
+      && windowWidth < DESKTOP_WIDTH && setCardCount(cardCount + NUMBER_OF_CARDS_TO_BE_ADDED_ON_MOBILE);
   };
 
   useEffect(() => {
-    windowWidth >= 1280
-      && setCardCount(12);
+    windowWidth >= DESKTOP_WIDTH
+      && setCardCount(NUMBER_OF_CARDS_FOR_DESKTOP);
 
-    windowWidth >= 768
-      && windowWidth < 1280 && setCardCount(8);
+    windowWidth >= TABLET_WIDTH
+      && windowWidth < DESKTOP_WIDTH && setCardCount(NUMBER_OF_CARDS_FOR_TABLET);
 
-    windowWidth >= 320
-      && windowWidth < 768 && setCardCount(5);
+    windowWidth >= MOBILE_WIDTH
+      && windowWidth < TABLET_WIDTH && setCardCount(NUMBER_OF_CARDS_FOR_MOBILE);
   }, [windowWidth, movies]);
 
   useEffect(() => {
-    const moviesData = localStorage.getItem('movies') !== null
-      ? JSON.parse(localStorage.getItem('movies'))
-      : [];
-    setMovies(moviesData);
+    if (localStorage.reqData) {
+      const { movies, searchQuery } = JSON.parse(localStorage.getItem('reqData'));
+      const toggleState = JSON.parse(localStorage.getItem('toggleState'));
+      setIsEnableShortMovies(toggleState);
+      setSearchQuery(searchQuery);
+      (!isEnableShortMovies) ?
+        setMovies(movies)
+        :
+        setMovies(filterShortMovies(movies) || []);
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('toggleState', isEnableShortMovies);
+  }, [isEnableShortMovies]);
+
+  const handleSetMovies = () => {
+    const filteredMovies = filterMovies(JSON.parse(localStorage.getItem('movies')), searchQuery);
+    filteredMovies.length === 0 && setResponseText('Ничего не найдено.');
+    localStorage.setItem('reqData', JSON.stringify({ movies: filteredMovies, searchQuery: searchQuery }));
+    (!isEnableShortMovies) ?
+      setMovies(filteredMovies)
+      :
+      setMovies(filterShortMovies(filteredMovies) || []);
+  }
 
   const handleSearchButton = (e) => {
     e.preventDefault();
-
     setIsLoading(true);
-    moviesApi.getAllMovies()
-      .then((data) => {
-        const filteredMovies = filterMovies(data, searchQuery, isEnableShortMovies);
-        filteredMovies.length === 0 && setResponseText('Ничего не найдено.');
-        setMovies(filteredMovies);
-        localStorage.setItem('movies', JSON.stringify(filteredMovies));
-      })
-      .catch(() => {
-        setMovies([]);
-        localStorage.removeItem('movies');
-        setResponseText(`Во время запроса произошла ошибка.
+
+    if (!localStorage.movies) {
+      moviesApi.getAllMovies()
+        .then((data) => {
+          localStorage.setItem('movies', JSON.stringify(data));
+          handleSetMovies();
+        })
+        .catch(() => {
+          localStorage.removeItem('movies');
+          setResponseText(`Во время запроса произошла ошибка.
         Возможно, проблема с соединением или сервер недоступен.
         Подождите немного и попробуйте ещё раз.`);
-      })
-      .finally(() => setIsLoading(false));
-  };
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      handleSetMovies();
+      setIsLoading(false);
+    }
+  }
 
   return (
     <>
@@ -84,6 +120,7 @@ function Movies({ handleLikeClick }) {
         handleSearchQuery={(e) => setSearchQuery(e.target.value)}
         handleSearchButton={handleSearchButton}
         isLoading={isLoading}
+        isActiveCheckbox={isEnableShortMovies}
         switchShortMovie={switchShortMovie}
       />
 

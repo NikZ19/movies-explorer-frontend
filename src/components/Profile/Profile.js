@@ -1,54 +1,59 @@
 import { useContext, useEffect } from 'react';
-import './Profile.css';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import useFormWithValidation from '../../utils/useValidationForm';
+import { useInput } from '../../hooks/useInput';
 import Preloader from '../Preloader/Preloader';
+import './Profile.css';
 
 function Profile({ handleLogout, handleButtonEdit, success, serverError, isLoading, resetServerError }) {
   const currentUser = useContext(CurrentUserContext);
-  const { values, handleChange, isValid, updateValue } = useFormWithValidation();
+
+  const name = useInput('', 'name');
+  const email = useInput('', 'email');
 
   useEffect(() => {
     resetServerError();
   }, []);
 
   useEffect(() => {
-    updateValue('name', currentUser.name);
-    updateValue('email', currentUser.email);
+    name.updateValue(currentUser.name);
+    email.updateValue(currentUser.email);
   }, [currentUser]);
 
-  const isFormInvalid = !isValid
-    || ((values.email === currentUser.email)
-      && (values.name === currentUser.name));
+  const isFormInvalid = (((email.value === currentUser.email) && (name.value === currentUser.name)) || (name.inputInvalid || email.inputInvalid) || isLoading);
 
   return (
     <section className='profile root__container'>
       <div className='profile__container'>
         <h1 className='profile__greeting'>Привет, {currentUser.name}!</h1>
-        <form className='profile__form' id='profile-form'>
-          <label className='profile__label'>Имя
+        <form className='profile__form' id='profile-form' noValidate>
+          <label className='profile__label'>
+            Имя
             <input className='profile__input'
               name='name'
               type='text'
-              value={values.name || ''}
-              onChange={handleChange}
-              pattern={'[A-Za-zА-Яа-яЁё]+([ -][A-Za-zА-Яа-яЁё]+)?'}
-              minLength={2}
-              maxLength={30}
+              value={name.value}
+              onChange={e => name.onChange(e)}
+              onBlur={e => name.onBlur(e)}
               disabled={isLoading}
-              required
             />
           </label>
-          <label className='profile__label'>E-mail
+          <span className='profile__input-error'>
+            {name.isDirty && name.currentError}
+          </span>
+          <label className='profile__label'>
+            E-mail
             <input className='profile__input'
               name='email'
               type='email'
-              value={values.email || ''}
-              onChange={handleChange}
+              value={email.value}
+              onChange={e => email.onChange(e)}
+              onBlur={e => email.onBlur(e)}
               disabled={isLoading}
-              required
             />
           </label>
+          <span className='profile__input-error'>
+            {email.isDirty && email.currentError}
+          </span>
         </form>
         <div className='profile__response-block'>
           {isLoading && <Preloader />}
@@ -59,8 +64,8 @@ function Profile({ handleLogout, handleButtonEdit, success, serverError, isLoadi
         <div className='profile__buttons'>
           <button className='profile__button profile__button_type_submit'
             form='profile-form'
-            onClick={(e) => handleButtonEdit(e, values.name, values.email)}
-            disabled={isFormInvalid || isLoading}
+            onClick={(e) => handleButtonEdit(e, name.value, email.value)}
+            disabled={isFormInvalid}
           >
             Редактировать
           </button>
@@ -72,7 +77,7 @@ function Profile({ handleLogout, handleButtonEdit, success, serverError, isLoadi
           </button>
         </div>
       </div>
-    </section >
+    </section>
   );
 }
 
