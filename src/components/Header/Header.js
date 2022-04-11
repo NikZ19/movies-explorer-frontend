@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import Logo from '../Logo/Logo';
 import PopupMobileMenu from '../Popups/PopupMobileMenu/PopupMobileMenu';
 import Navigation from '../Navigation/Navigation';
 
-export function Header(props) {
+function Header(props) {
 
   const [menuIsOpen, setMenuIsOpen] = React.useState(false);
 
@@ -26,7 +26,7 @@ export function Header(props) {
       <div className='header__container'>
         <Logo />
         {props.loggedIn ?
-          <Navigation type='header'/>
+          <Navigation type='header' />
           :
           <div className='header__logged-out'>
             <Link className='header__link' to='/signup'>Регистрация</Link>
@@ -41,3 +41,5 @@ export function Header(props) {
     </header>
   )
 }
+
+export default Header;

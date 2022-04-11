@@ -9,7 +9,7 @@ function NotFoundPage(props) {
         <p className='not-found__code'>404</p>
         <p className='not-found__message'>Страница не найдена</p>
       </div>
-      <button className='not-found__back' onClick={() => navigate(-1)}>Назад</button>
+      <button className='not-found__back' onClick={() => navigate(-2)}>Назад</button>
     </section>
   );
 }

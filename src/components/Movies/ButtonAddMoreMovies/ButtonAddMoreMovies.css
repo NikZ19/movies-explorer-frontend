@@ -1,27 +1,27 @@
-.more {
+.more-movies {
   max-width: 1140px;
   width: calc(100% - 140px);
 }
 
 @media screen and (max-width: 1024px) {
-  .more {
+  .more-movies {
     width: calc(100% - 100px);
   }
 }
 
 @media screen and (max-width: 768px) {
-  .more {
+  .more-movies {
     width: calc(100% - 60px);
   }
 }
 
 @media screen and (max-width: 425px) {
-  .more {
+  .more-movies {
     width: calc(100% - 20px);
   }
 }
 
-.more__button {
+.more-movies__button {
   margin: 50px 0 80px;
   background: #F9F9F9;
   border-radius: 6px;
@@ -35,6 +35,6 @@
   transition: 0.4s ease-in-out;
 }
 
-.more__button:hover {
+.more-movies__button:hover {
   opacity: 0.6;
 }

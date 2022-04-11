@@ -1,21 +1,18 @@
-import { useState } from 'react';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm(props) {
-
-  const [toggled, setToggled] = useState(true);
+function SearchForm({ handleSearchButton, handleSearchQuery, searchQuery, isLoading, switchShortMovie, isActiveCheckbox }) {
 
   return (
-    <div className='search-form root__container'>
+    <div className='search-form root__container' >
       <div className='search-form__container '>
         <span className='search-form__icon'></span>
-        <form className='search-form__form '>
-          <input className='search-form__input' placeholder='Фильм' required></input>
-          <button className='search-form__submit'>Найти</button>
+        <form className='search-form__form' onSubmit={handleSearchButton}>
+          <input className='search-form__input' value={searchQuery} onChange={handleSearchQuery} placeholder={'Фильм'}></input>
+          <button className='search-form__submit' disabled={isLoading || !searchQuery}>Найти</button>
         </form>
         <div className='search-form__checkbox'>
-          <FilterCheckbox onChange={(e) => setToggled(e.target.checked)} label='Короткометражки' defaultChecked={toggled} />
+          <FilterCheckbox switchShortMovie={switchShortMovie} label='Короткометражки' isActive={isActiveCheckbox}/>
         </div>
       </div>
     </div>
