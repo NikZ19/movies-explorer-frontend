@@ -1,4 +1,28 @@
-## Ссылки
+## Фронтенд для дипломного проекта Explorer Movies.
 
-* Ссылка на фронтенд - <https://nikz.beatfilm.nomoredomains.rocks/>
-* Ссылка на API - <https://api.nikz.beatfilm.nomoredomains.rocks/>
+### Языки и инструменты:
+HTML, CSS, JavaScript, React
+
+### Описание 
+Это одностраничное веб-приложение, написанное на React.
+
+Имеющийся функционал: 
+* регистрация и авторизация пользователей;
+* редактирование личного профиля;
+* поиск и сохранение фильмов.
+
+### Страницы приложения
+* Главная страница "/"
+* Cтраница регистрации "/signup"
+* Cтраница авторизации "/signin" 
+* Cтраница профиля "/profile"
+* Cтраница поиска фильмов "/movies"
+* Cтраница сохраненных фильмов "/saved-movies"
+* Cтраница 404 ошибки "/*"
+
+### Ссылки
+[`Опубликованная версия`](https://nikz.beatfilm.nomoredomains.rocks/) 
+
+[`Макет`](https://www.figma.com/file/QWCs0tDFS6wE8mY7GUH73q/Макет-диплома?node-id=891%3A3857)
+
+[`Бекенд`](https://github.com/NikZ19/movies-explorer-api) 
