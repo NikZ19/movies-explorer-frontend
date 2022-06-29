@@ -21,7 +21,6 @@ HTML, CSS, JavaScript, React
 * Cтраница 404 ошибки "/*"
 
 ### Ссылки
-[`Опубликованная версия`](https://nikz.beatfilm.nomoredomains.rocks/) 
 
 [`Макет`](https://www.figma.com/file/QWCs0tDFS6wE8mY7GUH73q/Макет-диплома?node-id=891%3A3857)
 
